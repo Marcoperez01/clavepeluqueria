@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Formulario de Datos</title>
+ 
+ <!-- Estilos CSS -->
+ <style>
+ html, body {
+ height: 100%;
+ margin: 0;
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ background: linear-gradient(to right, #e3aee6, #ffe6fa); /* Degradado de morado pastel a rosa pastel */
+ color: #333;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ }
+ /* Estilos para el header */
+ header {
+ position: fixed;
+ top: 0;
+ width: 100%;
+ display: flex;
+ align-items: center;
+ padding: 20px;
+ background-color: #d8b3e6; /* Color pastel morado */
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ z-index: 1000;
+ }
+ header h1 {
+ color: #6a0dad; /* Color morado */
+ margin: 0;
+ margin-left: 20px;
+ }
+ .header-image {
+ width: 150px;
+ height: auto;
+ }
+ /* Estilos para el formulario */
+ form {
+ max-width: 800px;
+ width: 100%;
+ background-color: #ffffff;
+ padding: 30px;
+ border-radius: 10px;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ box-sizing: border-box;
+ color: #333;
+ margin-top: 120px; /* Espacio para el header */
+ }
+ h2 {
+ text-align: center;
+ color: #6a0dad; /* Color morado */
+ margin-bottom: 20px;
+ }
+ .form-group {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-between;
+ }
+ .form-group div {
+ flex: 0 0 48%;
+ }
+ label {
+ display: block;
+ margin-bottom: 10px;
+ font-weight: 600;
+ color: #6a0dad; /* Color morado */
+ }
+ /* Estilos para los inputs */
+ input[type="text"],
+ input[type="number"] {
+ width: 100%;
+ padding: 10px;
+ margin-bottom: 20px;
+ border: 1px solid #ccc;
+ border-radius: 5px;
+ box-sizing: border-box;
+ font-size: 16px;
+ color: #333;
+ }
+ input[type="text"]:focus,
+ input[type="number"]:focus {
+ border-color: #6a0dad; /* Color morado */
+ box-shadow: 0 0 5px rgba(106, 13, 173, 0.5);
+ outline: none;
+ }
+ /* Estilos para el botón de enviar */
+ input[type="submit"] {
+ background-color: #6a0dad; /* Color morado */
+ color: #fff;
+ padding: 15px;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ width: 100%;
+ font-size: 16px;
+ font-weight: 600;
+ transition: background-color 0.3s ease;
+ }
+ input[type="submit"]:hover {
+ background-color: #5a008a; /* Color ligeramente más oscuro */
+ }
+ /* Mensaje de éxito */
+ .success-message {
+ display: none;
+ background-color: #d4edda;
+ color: #155724;
+ padding: 15px;
+ margin-top: 20px;
+ border: 1px solid #c3e6cb;
+ border-radius: 5px;
+ text-align: center;
+ }
+ </style>
+</head>
+<body>
+    <!-- Cabecera de la página -->
+ <header>
+    <img src= "C:\Users\marco\OneDrive\Escritorio\clavePNG/logocorta.PNG" alt="Imagen del encabezado" class="header-image">
+    <h1 id="headerTitle">Clave del peluquero exitoso</h1>
+    <button id="changeTitleBtn" style="margin-left: auto; padding: 10px; background-color: #6a0dad; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Cambiar Título</button>
+ </header>
+ <form id="userForm" action="procesar_pedido.php" method="post">
+ <h2>Crear Usuario</h2>
+ <div class="form-group">
+ <div>
+ <label for="nombre">Nombre:</label>
+ <input type="text" id="nombre" name="nombre" required>
+ </div>
+ <div>
+ <label for="apellido">Apellido:</label>
+ <input type="text" id="apellido" name="apellido" required>
+ </div>
+ <div>
+ <label for="direccion">Dirección:</label>
+ <input type="text" id="direccion" name="direccion" required>
+ </div>
+ <div>
+ <label for="cedula">Cédula:</label>
+ <input type="number" id="cedula" name="cedula" required>
+ </div>
+ <div>
+ <label for="numero">Número:</label>
+ <input type="number" id="numero" name="numero" required>
+ </div>
+ <div>
+ <label for="edad">Edad:</label>
+ <input type="number" id="edad" name="edad" required>
+ </div>
+ </div>
+ <!-- Botón de enviar -->
+ <input type="submit" value="Enviar">
+ </form>
+ <div id="successMessage" class="success-message">
+    ¡Formulario enviado con éxito!
+ </div>
+
+ <!-- Scripts JavaScript -->
+ <script>
+ document.getElementById('userForm').addEventListener('submit', function(event) {
+ event.preventDefault(); // Evitar el envío del formulario
+
+ // Validación adicional (ejemplo)
+ let valid = true;
+ const inputs = document.querySelectorAll('input[type="text"], input[type="number"]');
+ inputs.forEach(input => {
+ if (!input.value) {
+ valid = false;
+ input.style.borderColor = 'red';
+ } else {
+ input.style.borderColor = '#ccc';
+ }
+ });
+
+ if (!valid) {
+ alert('Por favor, completa todos los campos.');
+ return;
+ }
+
+ // Aquí puedes agregar la lógica para enviar el formulario mediante AJAX, si es necesario
+
+ // Mostrar mensaje de éxito
+ document.getElementById('successMessage').style.display = 'block';
+
+ // Ocultar el mensaje después de 3 segundos
+ setTimeout(function() {
+ document.getElementById('successMessage').style.display = 'none';
+ }, 3000);
+
+ // Limpiar el formulario
+ document.getElementById('userForm').reset();
+ });
+
+ // Cambiar título del encabezado
+ document.getElementById('changeTitleBtn').addEventListener('click', function() {
+ const headerTitle = document.getElementById('headerTitle');
+ if (headerTitle.textContent === 'Clave del peluquero exitoso') {
+ headerTitle.textContent = 'Secretos del estilista experto';
+ } else {
+ headerTitle.textContent = 'Clave del peluquero exitoso';
+ }
+ });
+ </script>
+</body>
+</html>

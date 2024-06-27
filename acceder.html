@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Iniciar Sesión</title>
+ <style>
+ html, body {
+ height: 100%;
+ margin: 0;
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ background: linear-gradient(to right, #e3aee6, #ffe6fa); /* Degradado de morado pastel a rosa pastel */
+ color: #333;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ }
+ /* Estilos para el header */
+ header {
+ position: fixed;
+ top: 0;
+ width: 100%;
+ display: flex;
+ align-items: center;
+ padding: 20px;
+ background-color: #d8b3e6; /* Color pastel morado */
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ z-index: 1000;
+ }
+ header h1 {
+ color: #6a0dad; /* Color morado */
+ margin: 0;
+ margin-left: 20px;
+ }
+ .header-image {
+ width: 150px;
+ height: auto;
+ }
+ /* Estilos para el formulario */
+ form {
+ max-width: 400px;
+ width: 100%;
+ background-color: #ffffff;
+ padding: 30px;
+ border-radius: 10px;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ box-sizing: border-box;
+ color: #333;
+ margin-top: 120px; /* Espacio para el header */
+ text-align: center;
+ }
+ h2 {
+ color: #6a0dad; /* Color morado */
+ margin-bottom: 20px;
+ }
+ label {
+ display: block;
+ margin-bottom: 10px;
+ font-weight: 600;
+ color: #6a0dad; /* Color morado */
+ }
+ input[type="text"] {
+ width: 100%;
+ padding: 12px 20px;
+ margin: 8px 0;
+ box-sizing: border-box;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ font-size: 16px;
+ color: #333;
+ }
+ input[type="text"]:focus {
+ border-color: #6a0dad; /* Color morado */
+ box-shadow: 0 0 5px rgba(106, 13, 173, 0.5);
+ outline: none;
+ }
+ input[type="submit"] {
+ background-color: #6a0dad; /* Color morado */
+ color: #fff;
+ padding: 14px 20px;
+ margin: 8px 0;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+ width: 100%;
+ font-size: 16px;
+ font-weight: 600;
+ transition: background-color 0.3s ease;
+ }
+ input[type="submit"]:hover {
+ background-color: #5a008a; /* Color ligeramente más oscuro */
+ }
+ /* Botones adicionales */
+ .btn {
+ background-color: #d8b3e6; /* Color pastel morado */
+ color: #6a0dad;
+ padding: 10px 20px;
+ margin: 8px 0;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+ width: 100%;
+ font-size: 14px;
+ font-weight: 600;
+ transition: background-color 0.3s ease;
+ }
+ .btn:hover {
+ background-color: #c59cd8; /* Color ligeramente más oscuro */
+ }
+ /* Mensaje de éxito */
+ .success-message {
+ display: none;
+ background-color: #d4edda;
+ color: #155724;
+ padding: 15px;
+ margin-top: 20px;
+ border: 1px solid #c3e6cb;
+ border-radius: 5px;
+ text-align: center;
+ }
+ </style>
+</head>
+<body>
+ <header>
+    <img src="C:\Users\marco\OneDrive\Escritorio\clavePNG/logocorta.PNG" alt="Imagen del encabezado" class="header-image">
+    <h1 id="headerTitle">Ingresa a la clave del peluquero exitoso</h1>
+    <button id="changeTitleBtn" style="margin-left: auto; padding: 10px; background-color: #6a0dad; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Cambiar Título</button>
+ </header>
+ <form id="loginForm" action="buscar_cedula.php" method="post">
+ <h2>Iniciar Sesión</h2>
+ <label for="cedula">Cédula:</label>
+ <input type="text" id="cedula" name="cedula" required pattern="[0-9]+"
+placeholder="Ingresa tu cédula">
+ <input type="submit" value="Ingresar">
+ <button type="button" class="btn" id="createAccountBtn">Crear Cuenta</button>
+ <button type="button" class="btn" id="forgotAccountBtn">Olvidaste tu Cuenta</button>
+ </form>
+ <div id="successMessage" class="success-message">
+    ¡Sesión iniciada con éxito!
+ </div>
+
+ <!-- Scripts JavaScript -->
+ <script>
+ document.getElementById('loginForm').addEventListener('submit', function(event) {
+ event.preventDefault(); // Evitar el envío del formulario
+
+ // Validación adicional (ejemplo)
+ const cedulaInput = document.getElementById('cedula');
+ if (!cedulaInput.value) {
+ cedulaInput.style.borderColor = 'red';
+ alert('Por favor, ingresa tu cédula.');
+ return;
+ } else {
+ cedulaInput.style.borderColor = '#ccc';
+ }
+
+ // Aquí puedes agregar la lógica para enviar el formulario mediante AJAX, si es necesario
+
+ // Mostrar mensaje de éxito
+ document.getElementById('successMessage').style.display = 'block';
+
+ // Ocultar el mensaje después de 3 segundos
+ setTimeout(function() {
+ document.getElementById('successMessage').style.display = 'none';
+ }, 3000);
+
+ // Limpiar el formulario
+ document.getElementById('loginForm').reset();
+ });
+
+ // Cambiar título del encabezado
+ document.getElementById('changeTitleBtn').addEventListener('click', function() {
+ const headerTitle = document.getElementById('headerTitle');
+ if (headerTitle.textContent === 'Ingresa a la clave del peluquero exitoso') {
+ headerTitle.textContent = 'Comienza una experencia satisfactoria, evoluciona tu estilo';
+ } else {
+ headerTitle.textContent = 'Ingresa a la clave del peluquero exitoso';
+ }
+ });
+
+ // Redirigir a la página de crear cuenta
+ document.getElementById('createAccountBtn').addEventListener('click', function() {
+ window.location.href = 'crear_cuenta.html'; // Cambia 'crear_cuenta.html' por la URL de tu página de creación de cuenta
+ });
+
+ // Funcionalidad de "Olvidaste tu cuenta"
+ document.getElementById('forgotAccountBtn').addEventListener('click', function() {
+ alert('Por favor, contacta con el administrador para recuperar tu cuenta.'); // Puedes cambiar esto para redirigir a una página específica o mostrar un formulario
+ });
+ </script>
+</body>
+</html>
