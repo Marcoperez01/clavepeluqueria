@@ -1,0 +1,75 @@
+/* Estilos para el panel de usuario */
+#user-dashboard {
+    background-color: #e885fe;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* Estilos del encabezado del panel de usuario */
+#user-dashboard h1 {
+    color: #ffffff; /* Texto en blanco para mejor contraste */
+    background-color: #b55af6; /* Fondo morado */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* Estilos de la sección principal */
+main {
+    padding: 40px 0;
+}
+
+main h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #a228fa; /* Cambiamos los títulos principales a morado */
+}
+
+main h2 i {
+    margin-right: 10px;
+}
+
+/* Estilo para las tarjetas del panel de usuario */
+#user-dashboard .card {
+    margin-bottom: 20px;
+}
+
+#user-dashboard .card-header {
+    background-color: #7c3cb5; /* Morado más claro para cabeceras de las tarjetas */
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#user-dashboard table {
+    width: 100%;
+}
+
+#user-dashboard th, #user-dashboard td {
+    padding: 10px;
+    border-bottom: 1px solid #f990f9; /* Color de borde */
+}
+
+#user-dashboard th {
+    background-color: #f1f3f5;
+    font-weight: bold;
+}
+
+/* Mejoras generales para botones y otros elementos */
+.btn-primary {
+    background-color: #6a0dad;
+    border-color: #6a0dad;
+}
+
+.btn-primary:hover {
+    background-color: #7c3cb5;
+    border-color: #7c3cb5;
+}
+
+footer {
+    background-color: #96739b;
+    color: #fff;
+}
